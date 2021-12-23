@@ -1,0 +1,28 @@
+{
+  "Name": "Dreamers Without World Sense",
+  "Priority": 1.0,
+  "IncludeItems": [
+    "Lurien",
+    "Monomon",
+    "Herrah"
+  ],
+  "IncludeLocations": [
+    "Lurien",
+    "Monomon",
+    "Herrah"
+  ],
+  "ExcludeVanilla": [
+    {
+      "item": "Lurien",
+      "location": "Lurien"
+    },
+    {
+      "item": "Monomon",
+      "location": "Monomon"
+    },
+    {
+      "item": "Herrah",
+      "location": "Herrah"
+    }
+  ]
+}
