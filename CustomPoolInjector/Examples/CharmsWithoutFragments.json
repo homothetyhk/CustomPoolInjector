@@ -1,0 +1,244 @@
+{
+  "Name": "Charms Without Fragments",
+  "Priority": 1.0,
+  "IncludeItems": [
+    "Gathering_Swarm",
+    "Wayward_Compass",
+    "Grubsong",
+    "Stalwart_Shell",
+    "Baldur_Shell",
+    "Fury_of_the_Fallen",
+    "Quick_Focus",
+    "Lifeblood_Heart",
+    "Lifeblood_Core",
+    "Defender's_Crest",
+    "Flukenest",
+    "Thorns_of_Agony",
+    "Mark_of_Pride",
+    "Steady_Body",
+    "Heavy_Blow",
+    "Sharp_Shadow",
+    "Spore_Shroom",
+    "Longnail",
+    "Shaman_Stone",
+    "Soul_Catcher",
+    "Soul_Eater",
+    "Glowing_Womb",
+    "Fragile_Heart",
+    "Fragile_Greed",
+    "Fragile_Strength",
+    "Nailmaster's_Glory",
+    "Joni's_Blessing",
+    "Shape_of_Unn",
+    "Hiveblood",
+    "Dream_Wielder",
+    "Dashmaster",
+    "Quick_Slash",
+    "Spell_Twister",
+    "Deep_Focus",
+    "Grubberfly's_Elegy",
+    "Sprintmaster",
+    "Dreamshield",
+    "Weaversong",
+    "Grimmchild2"
+  ],
+  "IncludeLocations": [
+    "Grubfather",
+    "Baldur_Shell",
+    "Fury_of_the_Fallen",
+    "Lifeblood_Core",
+    "Defender's_Crest",
+    "Flukenest",
+    "Thorns_of_Agony",
+    "Mark_of_Pride",
+    "Sharp_Shadow",
+    "Spore_Shroom",
+    "Soul_Catcher",
+    "Soul_Eater",
+    "Glowing_Womb",
+    "Nailmaster's_Glory",
+    "Joni's_Blessing",
+    "Shape_of_Unn",
+    "Hiveblood",
+    "Seer",
+    "Dashmaster",
+    "Quick_Slash",
+    "Spell_Twister",
+    "Deep_Focus",
+    "Grubfather",
+    "Dreamshield",
+    "Weaversong",
+    "Grimmchild",
+    "Sly",
+    "Sly",
+    "Sly_(Key)",
+    "Sly_(Key)",
+    "Iselda",
+    "Salubra",
+    "Salubra",
+    "Salubra",
+    "Salubra",
+    "Salubra",
+    "Leg_Eater",
+    "Leg_Eater",
+    "Leg_Eater"
+  ],
+  "ExcludeVanilla": [
+    {
+      "item": "Grubsong",
+      "location": "Grubfather"
+    },
+    {
+      "item": "Baldur_Shell",
+      "location": "Baldur_Shell"
+    },
+    {
+      "item": "Fury_of_the_Fallen",
+      "location": "Fury_of_the_Fallen"
+    },
+    {
+      "item": "Lifeblood_Core",
+      "location": "Lifeblood_Core"
+    },
+    {
+      "item": "Defender's_Crest",
+      "location": "Defender's_Crest"
+    },
+    {
+      "item": "Flukenest",
+      "location": "Flukenest"
+    },
+    {
+      "item": "Thorns_of_Agony",
+      "location": "Thorns_of_Agony"
+    },
+    {
+      "item": "Mark_of_Pride",
+      "location": "Mark_of_Pride"
+    },
+    {
+      "item": "Sharp_Shadow",
+      "location": "Sharp_Shadow"
+    },
+    {
+      "item": "Spore_Shroom",
+      "location": "Spore_Shroom"
+    },
+    {
+      "item": "Soul_Catcher",
+      "location": "Soul_Catcher"
+    },
+    {
+      "item": "Soul_Eater",
+      "location": "Soul_Eater"
+    },
+    {
+      "item": "Glowing_Womb",
+      "location": "Glowing_Womb"
+    },
+    {
+      "item": "Nailmaster's_Glory",
+      "location": "Nailmaster's_Glory"
+    },
+    {
+      "item": "Joni's_Blessing",
+      "location": "Joni's_Blessing"
+    },
+    {
+      "item": "Shape_of_Unn",
+      "location": "Shape_of_Unn"
+    },
+    {
+      "item": "Hiveblood",
+      "location": "Hiveblood"
+    },
+    {
+      "item": "Dream_Wielder",
+      "location": "Seer"
+    },
+    {
+      "item": "Dashmaster",
+      "location": "Dashmaster"
+    },
+    {
+      "item": "Quick_Slash",
+      "location": "Quick_Slash"
+    },
+    {
+      "item": "Spell_Twister",
+      "location": "Spell_Twister"
+    },
+    {
+      "item": "Deep_Focus",
+      "location": "Deep_Focus"
+    },
+    {
+      "item": "Grubberfly's_Elegy",
+      "location": "Grubfather"
+    },
+    {
+      "item": "Dreamshield",
+      "location": "Dreamshield"
+    },
+    {
+      "item": "Weaversong",
+      "location": "Weaversong"
+    },
+    {
+      "item": "Grimmchild2",
+      "location": "Grimmchild"
+    },
+    {
+      "item": "Gathering_Swarm",
+      "location": "Sly"
+    },
+    {
+      "item": "Stalwart_Shell",
+      "location": "Sly"
+    },
+    {
+      "item": "Heavy_Blow",
+      "location": "Sly_(Key)"
+    },
+    {
+      "item": "Sprintmaster",
+      "location": "Sly_(Key)"
+    },
+    {
+      "item": "Wayward_Compass",
+      "location": "Iselda"
+    },
+    {
+      "item": "Lifeblood_Heart",
+      "location": "Salubra"
+    },
+    {
+      "item": "Longnail",
+      "location": "Salubra"
+    },
+    {
+      "item": "Steady_Body",
+      "location": "Salubra"
+    },
+    {
+      "item": "Shaman_Stone",
+      "location": "Salubra"
+    },
+    {
+      "item": "Quick_Focus",
+      "location": "Salubra"
+    },
+    {
+      "item": "Fragile_Heart",
+      "location": "Leg_Eater"
+    },
+    {
+      "item": "Fragile_Greed",
+      "location": "Leg_Eater"
+    },
+    {
+      "item": "Fragile_Strength",
+      "location": "Leg_Eater"
+    }
+  ]
+}
