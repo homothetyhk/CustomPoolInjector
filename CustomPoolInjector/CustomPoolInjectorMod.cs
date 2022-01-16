@@ -1,4 +1,5 @@
-﻿using Modding;
+﻿using MenuChanger;
+using Modding;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -6,12 +7,13 @@ namespace CustomPoolInjector
 {
     public class CustomPoolInjectorMod : Mod, IGlobalSettings<GlobalSettings>
     {
-        public static GlobalSettings GlobalSettings { get; private set; } = new();
+        public static string ModDirectory { get; }
+        public static GlobalSettings GS { get; private set; } = new();
         public static readonly Dictionary<string, CustomPoolDef> Pools = new();
 
         public override void Initialize()
         {
-            UnityEngine.SceneManagement.SceneManager.activeSceneChanged += MenuHolder.OnExitMenu;
+            MenuChangerMod.OnExitMainMenu += MenuHolder.OnExitMenu;
             RandomizerMod.Menu.RandomizerMenuAPI.AddMenuPage(MenuHolder.ConstructMenu, MenuHolder.TryGetMenuButton);
             LoadFiles();
             foreach (CustomPoolDef def in Pools.Values)
@@ -27,8 +29,9 @@ namespace CustomPoolInjector
 
         public static void LoadFiles()
         {
-            DirectoryInfo di = new(Path.GetDirectoryName(typeof(CustomPoolInjectorMod).Assembly.Location));
-            foreach (var f in di.EnumerateFiles("*.json"))
+            DirectoryInfo main = new(ModDirectory);
+
+            foreach (var f in main.EnumerateFiles("*.json"))
             {
                 using FileStream fs = f.OpenRead();
                 using StreamReader sr = new(fs);
@@ -47,12 +50,17 @@ namespace CustomPoolInjector
 
         void IGlobalSettings<GlobalSettings>.OnLoadGlobal(GlobalSettings s)
         {
-            GlobalSettings = s ?? new();
+            GS = s ?? new();
         }
 
         GlobalSettings IGlobalSettings<GlobalSettings>.OnSaveGlobal()
         {
-            return GlobalSettings;
+            return GS;
+        }
+
+        static CustomPoolInjectorMod()
+        {
+            ModDirectory = Path.GetDirectoryName(typeof(CustomPoolInjectorMod).Assembly.Location);
         }
     }
 }

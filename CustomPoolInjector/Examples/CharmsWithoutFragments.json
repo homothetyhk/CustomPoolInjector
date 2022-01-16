@@ -240,5 +240,8 @@
       "item": "Fragile_Strength",
       "location": "Leg_Eater"
     }
-  ]
+  ],
+  "ExcludeVanillaShopItems": "SlyCharms, SlyKeyCharms, IseldaCharms, SalubraCharms, LegEaterCharms",
+  "ExcludeVanillaGrubfatherRewards": "Grubsong",
+  "ExcludeVanillaSeerRewards": "DreamWielder"
 }

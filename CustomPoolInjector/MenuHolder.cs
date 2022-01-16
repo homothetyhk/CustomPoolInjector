@@ -2,7 +2,6 @@
 using MenuChanger.MenuElements;
 using MenuChanger.MenuPanels;
 using MenuChanger.Extensions;
-using UnityEngine.SceneManagement;
 
 namespace CustomPoolInjector
 {
@@ -15,9 +14,9 @@ namespace CustomPoolInjector
         public MultiGridItemPanel Panel;
         public IMenuElement[] PoolToggles;
 
-        public static void OnExitMenu(Scene from, Scene to)
+        public static void OnExitMenu()
         {
-            if (from.name == "Menu_Title") Instance = null;
+            Instance = null;
         }
 
         public static void ConstructMenu(MenuPage connectionsPage)
@@ -33,17 +32,17 @@ namespace CustomPoolInjector
             JumpButton.AddHideAndShowEvent(MainPage);
             PoolToggles = CustomPoolInjectorMod.Pools.Values
                 .Select(def => CreatePoolToggle(MainPage, def)).ToArray();
-            Panel = new(MainPage, 6, 4, 50f, 400f, new(0, 300), PoolToggles);
+            Panel = new(MainPage, 5, 3, 60f, 650f, new(0, 300), PoolToggles);
         }
 
         public IMenuElement CreatePoolToggle(MenuPage page, CustomPoolDef def)
         {
             ToggleButton button = new(page, def.Name);
-            button.SetValue(CustomPoolInjectorMod.GlobalSettings.ActivePools.Contains(def.Name));
+            button.SetValue(CustomPoolInjectorMod.GS.ActivePools.Contains(def.Name));
             button.ValueChanged += b =>
             {
-                if (b) CustomPoolInjectorMod.GlobalSettings.ActivePools.Add(def.Name);
-                else CustomPoolInjectorMod.GlobalSettings.ActivePools.Remove(def.Name);
+                if (b) CustomPoolInjectorMod.GS.ActivePools.Add(def.Name);
+                else CustomPoolInjectorMod.GS.ActivePools.Remove(def.Name);
             };
             return button;
         }
