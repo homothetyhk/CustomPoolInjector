@@ -20,6 +20,7 @@ namespace CustomPoolInjector
             {
                 RandomizerMod.RC.RequestBuilder.OnUpdate.Subscribe(def.Priority, def.ApplyCustomPoolDef);
             }
+            RandomizerMod.Logging.SettingsLog.AfterLogSettings += LogSettings;
         }
 
         public override string GetVersion()
@@ -46,6 +47,14 @@ namespace CustomPoolInjector
                 CustomPoolDef def = serializer.Deserialize<CustomPoolDef>(jtr);
                 Pools.Add(def.Name, def);
             }
+        }
+
+        private static void LogSettings(RandomizerMod.Logging.LogArguments arg1, TextWriter tw)
+        {
+            tw.WriteLine("Logging CustomPoolInjector settings:");
+            using JsonTextWriter jtw = new(tw) { CloseOutput = false, };
+            RandomizerMod.RandomizerData.JsonUtil._js.Serialize(jtw, GS);
+            tw.WriteLine();
         }
 
         void IGlobalSettings<GlobalSettings>.OnLoadGlobal(GlobalSettings s)
