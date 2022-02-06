@@ -25,7 +25,7 @@ namespace CustomPoolInjector
 
         public override string GetVersion()
         {
-            return "1.0.1";
+            return "1.0.2";
         }
 
         public static void LoadFiles()
