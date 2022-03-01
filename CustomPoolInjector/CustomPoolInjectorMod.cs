@@ -53,7 +53,7 @@ namespace CustomPoolInjector
         {
             tw.WriteLine("Logging CustomPoolInjector settings:");
             using JsonTextWriter jtw = new(tw) { CloseOutput = false, };
-            RandomizerMod.RandomizerData.JsonUtil._js.Serialize(jtw, GS);
+            RandomizerMod.RandomizerData.JsonUtil._js.Serialize(jtw, GS.GetDisplayableSettings());
             tw.WriteLine();
         }
 
