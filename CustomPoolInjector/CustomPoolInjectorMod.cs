@@ -2,6 +2,7 @@
 using Modding;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Security.Cryptography;
 
 namespace CustomPoolInjector
 {
@@ -10,17 +11,24 @@ namespace CustomPoolInjector
         public static string ModDirectory { get; }
         public static GlobalSettings GS { get; private set; } = new();
         public static readonly Dictionary<string, CustomPoolDef> Pools = new();
+        public static readonly Dictionary<string, string> Hashes = new();
+
+        public CustomPoolInjectorMod()
+        {
+            LoadFiles();
+            GS.ActivePools.RemoveWhere(s => !Pools.ContainsKey(s));
+        }
 
         public override void Initialize()
         {
             MenuChangerMod.OnExitMainMenu += MenuHolder.OnExitMenu;
             RandomizerMod.Menu.RandomizerMenuAPI.AddMenuPage(MenuHolder.ConstructMenu, MenuHolder.TryGetMenuButton);
-            LoadFiles();
             foreach (CustomPoolDef def in Pools.Values)
             {
                 RandomizerMod.RC.RequestBuilder.OnUpdate.Subscribe(def.Priority, def.ApplyCustomPoolDef);
             }
             RandomizerMod.Logging.SettingsLog.AfterLogSettings += LogSettings;
+            SettingsInterop.HookRSM(this);
         }
 
         public override string GetVersion()
@@ -46,6 +54,12 @@ namespace CustomPoolInjector
                 serializer.Converters.Add(new StringEnumConverter());
                 CustomPoolDef def = serializer.Deserialize<CustomPoolDef>(jtr);
                 Pools.Add(def.Name, def);
+
+                fs.Seek(0, SeekOrigin.Begin);
+                using SHA256 sha = SHA256.Create();
+                byte[] data = sha.ComputeHash(fs);
+                Hashes.Add(def.Name, string.Concat(data.Select(b => b.ToString("X2"))));
+                Modding.Logger.Log($"{def.Name}: {Hashes[def.Name]}");
             }
         }
 
@@ -53,7 +67,7 @@ namespace CustomPoolInjector
         {
             tw.WriteLine("Logging CustomPoolInjector settings:");
             using JsonTextWriter jtw = new(tw) { CloseOutput = false, };
-            RandomizerMod.RandomizerData.JsonUtil._js.Serialize(jtw, GS.GetDisplayableSettings());
+            RandomizerMod.RandomizerData.JsonUtil._js.Serialize(jtw, GS);
             tw.WriteLine();
         }
 

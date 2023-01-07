@@ -13,6 +13,7 @@ namespace CustomPoolInjector
         public SmallButton JumpButton;
         public MultiGridItemPanel Panel;
         public IMenuElement[] PoolToggles;
+        public Dictionary<string, ToggleButton> PoolToggleLookup = new();
 
         public static void OnExitMenu()
         {
@@ -30,6 +31,7 @@ namespace CustomPoolInjector
             MainPage = new("Custom Pool Injector Main Menu", connectionsPage);
             JumpButton = new(connectionsPage, "Custom Pool Injection");
             JumpButton.AddHideAndShowEvent(MainPage);
+            connectionsPage.BeforeShow += () => JumpButton.Text.color = CustomPoolInjectorMod.GS.ActivePools.Count != 0 ? Colors.TRUE_COLOR : Colors.DEFAULT_COLOR;
             PoolToggles = CustomPoolInjectorMod.Pools.Values
                 .Select(def => CreatePoolToggle(MainPage, def)).ToArray();
             Panel = new(MainPage, 5, 3, 60f, 650f, new(0, 300), PoolToggles);
@@ -44,6 +46,7 @@ namespace CustomPoolInjector
                 if (b) CustomPoolInjectorMod.GS.ActivePools.Add(def.Name);
                 else CustomPoolInjectorMod.GS.ActivePools.Remove(def.Name);
             };
+            PoolToggleLookup[def.Name] = button;
             return button;
         }
 
@@ -58,5 +61,9 @@ namespace CustomPoolInjector
             return true;
         }
 
+        public ToggleButton GetPoolToggle(string name)
+        {
+            return PoolToggleLookup[name];
+        }
     }
 }
