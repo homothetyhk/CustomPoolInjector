@@ -2,7 +2,6 @@
 using Modding;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Security.Cryptography;
 
 namespace CustomPoolInjector
 {
@@ -11,33 +10,30 @@ namespace CustomPoolInjector
         public static string ModDirectory { get; }
         public static GlobalSettings GS { get; private set; } = new();
         public static readonly Dictionary<string, CustomPoolDef> Pools = new();
-        public static readonly Dictionary<string, string> Hashes = new();
 
         public CustomPoolInjectorMod()
         {
             LoadFiles();
-            GS.ActivePools.RemoveWhere(s => !Pools.ContainsKey(s));
         }
 
         public override void Initialize()
         {
             MenuChangerMod.OnExitMainMenu += MenuHolder.OnExitMenu;
             RandomizerMod.Menu.RandomizerMenuAPI.AddMenuPage(MenuHolder.ConstructMenu, MenuHolder.TryGetMenuButton);
-            foreach (CustomPoolDef def in Pools.Values)
-            {
-                RandomizerMod.RC.RequestBuilder.OnUpdate.Subscribe(def.Priority, def.ApplyCustomPoolDef);
-            }
+            RequestBuilderHookManager.Setup();
             RandomizerMod.Logging.SettingsLog.AfterLogSettings += LogSettings;
-            SettingsInterop.HookRSM(this);
+            SettingsInterop.Setup(this);
         }
 
         public override string GetVersion()
         {
-            return "1.0.2";
+            Version v = GetType().Assembly.GetName().Version;
+            return $"{v.Major}.{v.Minor}.{v.Build}";
         }
 
         public static void LoadFiles()
         {
+            Pools.Clear();
             DirectoryInfo main = new(ModDirectory);
 
             foreach (var f in main.EnumerateFiles("*.json"))
@@ -54,13 +50,8 @@ namespace CustomPoolInjector
                 serializer.Converters.Add(new StringEnumConverter());
                 CustomPoolDef def = serializer.Deserialize<CustomPoolDef>(jtr);
                 Pools.Add(def.Name, def);
-
-                fs.Seek(0, SeekOrigin.Begin);
-                using SHA256 sha = SHA256.Create();
-                byte[] data = sha.ComputeHash(fs);
-                Hashes.Add(def.Name, string.Concat(data.Select(b => b.ToString("X2"))));
-                Modding.Logger.Log($"{def.Name}: {Hashes[def.Name]}");
             }
+            GS.ActivePools.RemoveWhere(s => !Pools.ContainsKey(s));
         }
 
         private static void LogSettings(RandomizerMod.Logging.LogArguments arg1, TextWriter tw)

@@ -1,49 +1,52 @@
-﻿using MenuChanger.MenuElements;
-using Modding;
-using RandoSettingsManager;
-using RandoSettingsManager.SettingsManagement;
+﻿using Modding;
+using MonoMod.ModInterop;
 
 namespace CustomPoolInjector
 {
     internal class SettingsInterop
     {
-        internal static void HookRSM(Mod mod)
+        [ModImportName("RandoSettingsManager")]
+        internal static class RSMImport
         {
-            RandoSettingsManagerMod.Instance.RegisterConnection(new SimpleSettingsProxy<Dictionary<string, string>>(
-                mod,
-                ReceiveSettings,
-                SendSettings
-                ));
+            public static Action<Mod, Type, Delegate, Delegate>? RegisterConnectionSimple = null;
+            static RSMImport() => typeof(RSMImport).ModInterop();
         }
 
-        internal static void ReceiveSettings(Dictionary<string, string> activeHashes) 
+        public class RSMData
         {
-            activeHashes ??= new();
-            foreach (KeyValuePair<string, string> kvp in activeHashes)
+            public RSMData() { }
+            public RSMData(GlobalSettings gs)
             {
-                if (!CustomPoolInjectorMod.Hashes.TryGetValue(kvp.Key, out string hash))
-                {
-                    throw new InvalidOperationException($"Received settings contain unrecognized active pack: {kvp.Key}");
-                }
-                else if (hash != kvp.Value)
-                {
-                    throw new InvalidOperationException($"Received settings contain hash mismatch for active pack: {kvp.Key}");
-                }
+                SharedPools = CustomPoolInjectorMod.Pools.Values.Where(p => gs.ActivePools.Contains(p.Name)).ToList();
             }
-            foreach (KeyValuePair<string, ToggleButton> kvp in MenuHolder.Instance.PoolToggleLookup)
+
+            public List<CustomPoolDef> SharedPools;
+        }
+
+        internal static void Setup(Mod mod)
+        {
+            RSMImport.RegisterConnectionSimple?.Invoke(mod, typeof(RSMData), ReceiveSettings, SendSettings);
+        }
+
+        internal static void ReceiveSettings(RSMData? data) 
+        {
+            MenuHolder.Instance.ToggleAllOff();
+            RequestBuilderHookManager.Reset(); // unnecessary check for safety
+
+            if (data is not null)
             {
-                bool value = activeHashes.ContainsKey(kvp.Key);
-                if (value != kvp.Value.Value)
-                {
-                    kvp.Value.SetValue(value);
-                }
+                CustomPoolInjectorMod.Pools.Clear();
+                foreach (CustomPoolDef pool in data.SharedPools) CustomPoolInjectorMod.Pools.Add(pool.Name, pool);
+                CustomPoolInjectorMod.GS.ActivePools.UnionWith(data.SharedPools.Select(p => p.Name));
+                MenuHolder.Instance.ReconstructMenu();
+                MenuHolder.Instance.CreateRestoreLocalPacksButton();
+                RequestBuilderHookManager.Setup();
             }
         }
 
-        internal static Dictionary<string, string> SendSettings()
+        internal static RSMData? SendSettings()
         {
-            if (CustomPoolInjectorMod.GS.ActivePools.Count == 0) return null;
-            return CustomPoolInjectorMod.GS.ActivePools.ToDictionary(p => p, p => CustomPoolInjectorMod.Hashes[p]);
+            return CustomPoolInjectorMod.GS.ActivePools.Count > 0 ? new(CustomPoolInjectorMod.GS) : null;
         }
     }
 }
