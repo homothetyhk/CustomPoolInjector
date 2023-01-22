@@ -4,8 +4,8 @@
     <TargetFramework>net472</TargetFramework>
     <RootNamespace>CustomPoolInjector</RootNamespace>
     <AssemblyTitle>CustomPoolInjector</AssemblyTitle>
-    <AssemblyVersion>1.1.0</AssemblyVersion>
-    <FileVersion>1.1.0</FileVersion>
+    <AssemblyVersion>1.1.1</AssemblyVersion>
+    <FileVersion>1.1.1</FileVersion>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <LangVersion>latest</LangVersion>
     <Deterministic>true</Deterministic>

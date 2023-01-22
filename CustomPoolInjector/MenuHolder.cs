@@ -73,8 +73,16 @@ namespace CustomPoolInjector
             button.SetValue(CustomPoolInjectorMod.GS.ActivePools.Contains(def.Name));
             button.ValueChanged += b =>
             {
-                if (b) CustomPoolInjectorMod.GS.ActivePools.Add(def.Name);
-                else CustomPoolInjectorMod.GS.ActivePools.Remove(def.Name);
+                if (b)
+                {
+                    CustomPoolInjectorMod.GS.ActivePools.Add(def.Name);
+                    RequestBuilderHookManager.AddPoolHook(def);
+                }
+                else
+                {
+                    CustomPoolInjectorMod.GS.ActivePools.Remove(def.Name);
+                    RequestBuilderHookManager.RemovePoolHook(def);
+                }
             };
             PoolToggleLookup[def.Name] = button;
             if (Panel is not null)

@@ -10,9 +10,12 @@ namespace CustomPoolInjector
     {
         public string Name;
         public float Priority;
-        public string[] IncludeItems;
-        public string[] IncludeLocations;
-        public VanillaDef[] ExcludeVanilla;
+        public string[]? IncludeItems;
+        public string[]? IncludeLocations;
+        public VanillaDef[]? ExcludeVanilla;
+        public string[]? ExcludeItems;
+        public string[]? ExcludeLocations;
+        public VanillaDef[]? IncludeVanilla;
         public DefaultShopItems ExcludeVanillaShopItems;
         public GrubfatherRewards ExcludeVanillaGrubfatherRewards;
         public SeerRewards ExcludeVanillaSeerRewards;
@@ -21,9 +24,13 @@ namespace CustomPoolInjector
         {
             if (!CustomPoolInjectorMod.GS.ActivePools.Contains(Name)) return;
 
-            foreach (string item in IncludeItems) rb.AddItemByName(item);
-            foreach (string location in IncludeLocations) rb.AddLocationByName(location);
-            foreach (VanillaDef def in ExcludeVanilla)
+            if (ExcludeItems is not null) foreach (string item in ExcludeItems) rb.GetItemGroupFor(item).Items.Remove(item, 1);
+            if (ExcludeLocations is not null) foreach (string location in ExcludeLocations) rb.GetLocationGroupFor(location).Locations.Remove(location, 1);
+            if (IncludeVanilla is not null) foreach (VanillaDef def in IncludeVanilla) rb.AddToVanilla(def);
+
+            if (IncludeItems is not null) foreach (string item in IncludeItems) rb.AddItemByName(item);
+            if (IncludeLocations is not null) foreach (string location in IncludeLocations) rb.AddLocationByName(location);
+            if (ExcludeVanilla is not null) foreach (VanillaDef def in ExcludeVanilla)
             {
                 if (def.Costs == null) rb.RemoveFromVanilla(def.Item, def.Location);
                 else rb.RemoveFromVanilla(def);
