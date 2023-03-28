@@ -16,9 +16,11 @@ The remaining fields are optional according to what you want the pool to do:
 - IncludeItems: the collection of items that should be added when the pool is randomized.
 - IncludeLocations: the collection of locations that should be added when the pool is randomized.
 - ExcludeVanilla: the collection of placements that are not vanilla when the pool is randomized.
+- ExcludePreplaced: the collection of placements preplaced by other pools or mods which should be removed when the pool is randomized.
 - ExcludeItems: the collection of items that should be removed when the pool is randomized. Items are removed by multiplicity from their matching group.
 - ExcludeLocations: the collection of locations that should be removed when the pool is randomized. Locations are removed by multiplicity from their matching group.
 - IncludeVanilla: the collection of placements that should be added to vanilla.
+- IncludePreplaced: the collection of placements that should be preplaced when the pool is randomized.
 - ExcludeVanillaShopItems: this is used to communicate when vanilla versions of an item should be removed from shops.
   - The value should be a string taking the form of a comma-separated list of flags from the DefaultShopItems enum defined in ItemChanger.
   - This property must be set **in addition** to listing the vanilla placements in ExcludeVanilla.
@@ -34,5 +36,8 @@ The remaining fields are optional according to what you want the pool to do:
 - Documentation for the above enums can be found at https://github.com/homothetyhk/HollowKnight.ItemChanger/blob/master/ItemChanger/Enums.cs
 Pools can be toggled from the CustomPoolInjector menu, located in the Connections page of the Randomizer 4 menu.
 
-NOTE: for most pools, only the IncludeItems, IncludeLocations, ExcludeVanilla fields are needed. ExcludeVanillaShopItems, ExcludeVanillaGrubfatherRewards, and ExcludeVanillaSeerRewards are necessary when the pool inserts shop/grubfather/seer locations which replace vanilla placements. ExcludeItems, ExcludeLocations, IncludeVanilla are necessary only when the pool is meant to be used with a conflicting pool active from which items or locations must be unrandomized. 
+NOTE: for most pools, only the IncludeItems, IncludeLocations, ExcludeVanilla fields are needed. ExcludeVanillaShopItems, ExcludeVanillaGrubfatherRewards, and ExcludeVanillaSeerRewards are necessary when the pool inserts shop/grubfather/seer locations which replace vanilla placements. ExcludeItems, ExcludeLocations, IncludeVanilla are necessary only when the pool is meant to be used with a conflicting pool active from which items or locations must be unrandomized.
 WARNING: due to the search method of ExcludeItems/ExcludeLocations, it will not remove items/locations which are not in their primary group, if multiple item groups are defined (such as with split groups).
+
+## Vanilla vs Preplaced
+In the usage above, an entry in IncludeVanilla tells the randomizer about the logical effect of something in the world, but does not result in any world changes. On the other hand, an entry in IncludePreplaced tells the randomizer to place an item at a specific location.

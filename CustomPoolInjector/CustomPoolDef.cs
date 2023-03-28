@@ -13,9 +13,11 @@ namespace CustomPoolInjector
         public string[]? IncludeItems;
         public string[]? IncludeLocations;
         public VanillaDef[]? ExcludeVanilla;
+        public VanillaDef[]? ExcludePreplaced;
         public string[]? ExcludeItems;
         public string[]? ExcludeLocations;
         public VanillaDef[]? IncludeVanilla;
+        public VanillaDef[]? IncludePreplaced;
         public DefaultShopItems ExcludeVanillaShopItems;
         public GrubfatherRewards ExcludeVanillaGrubfatherRewards;
         public SeerRewards ExcludeVanillaSeerRewards;
@@ -27,6 +29,7 @@ namespace CustomPoolInjector
             if (ExcludeItems is not null) foreach (string item in ExcludeItems) rb.GetItemGroupFor(item).Items.Remove(item, 1);
             if (ExcludeLocations is not null) foreach (string location in ExcludeLocations) rb.GetLocationGroupFor(location).Locations.Remove(location, 1);
             if (IncludeVanilla is not null) foreach (VanillaDef def in IncludeVanilla) rb.AddToVanilla(def);
+            if (IncludePreplaced is not null) foreach (VanillaDef def in IncludePreplaced) rb.AddToPreplaced(def);
 
             if (IncludeItems is not null) foreach (string item in IncludeItems) rb.AddItemByName(item);
             if (IncludeLocations is not null) foreach (string location in IncludeLocations) rb.AddLocationByName(location);
@@ -34,6 +37,11 @@ namespace CustomPoolInjector
             {
                 if (def.Costs == null) rb.RemoveFromVanilla(def.Item, def.Location);
                 else rb.RemoveFromVanilla(def);
+            }
+            if (ExcludePreplaced is not null) foreach (VanillaDef def in ExcludeVanilla)
+            {
+                if (def.Costs == null) rb.RemoveFromPreplaced(def.Item, def.Location);
+                else rb.RemoveFromPreplaced(def);
             }
 
             if (ExcludeVanillaShopItems != DefaultShopItems.None)
