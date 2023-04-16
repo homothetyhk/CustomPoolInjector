@@ -1,7 +1,291 @@
 {
   "Name": "IC Grubs",
-  "Priority": 1.0,
+  "Priority": 3.0,
   "IncludePreplaced": [
+    {
+      "item": "Grub",
+      "location": "Grub-Crossroads_Acid"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Crossroads_Center"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Crossroads_Stag"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Crossroads_Spike"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Crossroads_Guarded"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Greenpath_Cornifer"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Greenpath_Journal"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Greenpath_MMC"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Greenpath_Stag"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Fog_Canyon"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Fungal_Bouncy"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Fungal_Spore_Shroom"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Deepnest_Mimic"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Deepnest_Nosk"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Deepnest_Spike"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Dark_Deepnest"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Beast's_Den"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Kingdom's_Edge_Oro"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Kingdom's_Edge_Camp"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Hive_External"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Hive_Internal"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Basin_Requires_Wings"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Basin_Requires_Dive"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Waterways_Main"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Isma's_Grove"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Waterways_Requires_Tram"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-City_of_Tears_Left"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Soul_Sanctum"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Watcher's_Spire"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-City_of_Tears_Guarded"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-King's_Station"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Resting_Grounds"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Crystal_Peak_Below_Chest"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Crystallized_Mound"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Crystal_Peak_Spike"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Crystal_Peak_Mimic"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Crystal_Peak_Crushers"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Crystal_Heart"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Hallownest_Crown"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Howling_Cliffs"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Queen's_Gardens_Stag"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Queen's_Gardens_Marmu"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Queen's_Gardens_Top"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Collector_1"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Collector_2"
+    },
+    {
+      "item": "Grub",
+      "location": "Grub-Collector_3"
+    }
+  ],
+  "ExcludeItems": [
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub",
+    "Grub"
+  ],
+  "ExcludeLocations": [
+    "Grub-Crossroads_Acid",
+    "Grub-Crossroads_Center",
+    "Grub-Crossroads_Stag",
+    "Grub-Crossroads_Spike",
+    "Grub-Crossroads_Guarded",
+    "Grub-Greenpath_Cornifer",
+    "Grub-Greenpath_Journal",
+    "Grub-Greenpath_MMC",
+    "Grub-Greenpath_Stag",
+    "Grub-Fog_Canyon",
+    "Grub-Fungal_Bouncy",
+    "Grub-Fungal_Spore_Shroom",
+    "Grub-Deepnest_Mimic",
+    "Grub-Deepnest_Nosk",
+    "Grub-Deepnest_Spike",
+    "Grub-Dark_Deepnest",
+    "Grub-Beast's_Den",
+    "Grub-Kingdom's_Edge_Oro",
+    "Grub-Kingdom's_Edge_Camp",
+    "Grub-Hive_External",
+    "Grub-Hive_Internal",
+    "Grub-Basin_Requires_Wings",
+    "Grub-Basin_Requires_Dive",
+    "Grub-Waterways_Main",
+    "Grub-Isma's_Grove",
+    "Grub-Waterways_Requires_Tram",
+    "Grub-City_of_Tears_Left",
+    "Grub-Soul_Sanctum",
+    "Grub-Watcher's_Spire",
+    "Grub-City_of_Tears_Guarded",
+    "Grub-King's_Station",
+    "Grub-Resting_Grounds",
+    "Grub-Crystal_Peak_Below_Chest",
+    "Grub-Crystallized_Mound",
+    "Grub-Crystal_Peak_Spike",
+    "Grub-Crystal_Peak_Mimic",
+    "Grub-Crystal_Peak_Crushers",
+    "Grub-Crystal_Heart",
+    "Grub-Hallownest_Crown",
+    "Grub-Howling_Cliffs",
+    "Grub-Queen's_Gardens_Stag",
+    "Grub-Queen's_Gardens_Marmu",
+    "Grub-Queen's_Gardens_Top",
+    "Grub-Collector_1",
+    "Grub-Collector_2",
+    "Grub-Collector_3"
+  ],
+  "ExcludeVanilla": [
     {
       "item": "Grub",
       "location": "Grub-Crossroads_Acid"
