@@ -35,12 +35,12 @@ namespace CustomPoolInjector
             if (IncludeLocations is not null) foreach (string location in IncludeLocations) rb.AddLocationByName(location);
             if (ExcludeVanilla is not null) foreach (VanillaDef def in ExcludeVanilla)
             {
-                if (def.Costs == null) rb.RemoveFromVanilla(def.Item, def.Location);
+                if (def.Costs == null) rb.RemoveFromVanilla(def.Location, def.Item);
                 else rb.RemoveFromVanilla(def);
             }
-            if (ExcludePreplaced is not null) foreach (VanillaDef def in ExcludeVanilla)
+            if (ExcludePreplaced is not null) foreach (VanillaDef def in ExcludePreplaced)
             {
-                if (def.Costs == null) rb.RemoveFromPreplaced(def.Item, def.Location);
+                if (def.Costs == null) rb.RemoveFromPreplaced(def.Location, def.Item);
                 else rb.RemoveFromPreplaced(def);
             }
 
